@@ -1,8 +1,8 @@
 id = "ez"
 name = "EZ"
-version = "0.1.0"
+version = "0.2.0"
 schema_version = 1
-description = "Syntax highlighting for the EZ programming language"
+description = "Syntax highlighting and language server for the EZ programming language"
 repository = "https://github.com/SchoolyB/EZ"
 authors = ["Marshall Burns"]
 themes = []
@@ -12,4 +12,7 @@ capabilities = []
 
 [grammars.ez]
 repository = "https://github.com/SchoolyB/tree-sitter-ez"
-rev = "888941bbccbc0fb6d14b43120416348d38584302"
+rev = "ec039f5e63095fe4759c0463a4fa34f6374f8a7a"
+
+[language_servers.ez-lsp]
+language = "EZ"
