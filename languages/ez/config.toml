@@ -11,3 +11,4 @@ brackets = [
     { start = "\"", end = "\"", close = true, newline = false, not_in = ["string"] },
 ]
 word_characters = ["_"]
+language_servers = ["ez-lsp"]
