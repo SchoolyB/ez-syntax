@@ -5,6 +5,7 @@
 ; Strings
 (string) @string
 (string_content) @string
+(raw_string) @string
 
 ; String interpolation - capture the delimiters explicitly
 ; This must come BEFORE the general punctuation rules
@@ -24,6 +25,12 @@
 
 ; Nil
 (nil) @constant.builtin
+
+; Built-in constants
+[
+  "EXIT_SUCCESS"
+  "EXIT_FAILURE"
+] @constant.builtin
 
 ; Keywords
 [
@@ -47,6 +54,13 @@
   "struct"
   "enum"
   "new"
+  "when"
+  "is"
+  "default"
+  "cast"
+  "module"
+  "private"
+  "ensure"
 ] @keyword
 
 ; Break and continue are named nodes
@@ -76,6 +90,9 @@
   "byte"
   "string"
   "map"
+  "File"
+  "Database"
+  "Error"
 ] @type.builtin
 
 ; Operators
@@ -131,12 +148,40 @@
 ; Attributes - use preprocessor/tag color (distinct from functions)
 (attribute) @tag
 
-; Import paths - use namespace color
-(import_path) @namespace
+; Specific attribute names
+(attribute
+  name: (identifier) @tag
+  (#match? @tag "^(suppress|strict|enum|flags)$"))
+
+; Import statements
+(import_statement) @keyword
+(import_and_use_statement) @keyword
+
+; Import paths - stdlib modules with @ prefix
+(import_path
+  "@" @punctuation.special
+  (identifier) @namespace)
+
+; Import paths - string paths for user modules
+(import_path
+  (string) @string)
+
+; Module declarations (module mymodule)
+(module_declaration
+  name: (identifier) @namespace)
+
+; Using statements (using std, using arrays)
+(using_statement
+  (identifier) @namespace)
 
 ; Function definitions - function color
 (function_declaration
   name: (identifier) @function.definition)
+
+; Built-in function calls
+(call_expression
+  function: (identifier) @function.builtin
+  (#match? @function.builtin "^(len|typeof|copy|error|exit|panic|assert|ref|append|input|read_int)$"))
 
 ; Function calls
 (call_expression
