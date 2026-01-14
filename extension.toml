@@ -12,7 +12,7 @@ version = "0.7.0"
 
 [grammars.ez]
 repository = "https://github.com/SchoolyB/tree-sitter-ez"
-rev = "ec039f5e63095fe4759c0463a4fa34f6374f8a7a"
+rev = "1acd06ddff44aee4a46fbbdc405023f6a7677d03"
 
 [language_servers.ez-lsp]
 language = "EZ"
