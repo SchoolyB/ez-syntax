@@ -28,18 +28,49 @@ If you make changes to the extension, rebuild it:
 
 ## Features
 
-Syntax highlighting for:
+Comprehensive syntax highlighting for:
 
-- Keywords (`temp`, `const`, `do`, `if`, `or`, `otherwise`, `for`, `for_each`, `as_long_as`, `loop`, `break`, `continue`, `return`, `import`, `using`, `struct`, `enum`, `new`, `range`, `in`, `not_in`)
-- Primitive types (`int`, `i8`, `i16`, `i32`, `i64`, `i128`, `i256`, `u8`, `u16`, `u32`, `u64`, `u128`, `u256`, `float`, `f32`, `f64`, `bool`, `char`, `byte`, `string`, `map`)
-- Operators (`+`, `-`, `*`, `/`, `%`, `=`, `==`, `!=`, `<`, `>`, `<=`, `>=`, `&&`, `||`, `!`, `&`, `++`, `--`, `+=`, `-=`, `*=`, `/=`, `->`)
-- String literals and interpolation (`"hello ${name}"`)
-- Comments (`//` and `/* */`)
+### Keywords (23)
+- Control flow: `temp`, `const`, `do`, `return`, `if`, `or`, `otherwise`, `for`, `for_each`, `as_long_as`, `loop`, `break`, `continue`
+- Module system: `import`, `using`, `use`, `module`, `private`
+- Types: `struct`, `enum`, `new`
+- Pattern matching: `when`, `is`, `default`
+- Type system: `cast`, `ensure`
+- Operators: `in`, `not_in`, `range`
+
+### Types
+- Primitive: `int`, `float`, `bool`, `char`, `byte`, `string`, `map`
+- Signed integers: `i8`, `i16`, `i32`, `i64`, `i128`, `i256`
+- Unsigned integers: `u8`, `u16`, `u32`, `u64`, `u128`, `u256`
+- Floats: `f32`, `f64`
+- Special: `File`, `Database`, `Error`
+
+### Built-in Functions
+Highlighted distinctly: `len`, `typeof`, `copy`, `ref`, `append`, `input`, `read_int`, `error`, `panic`, `assert`, `exit`
+
+### Constants
+`true`, `false`, `nil`, `EXIT_SUCCESS`, `EXIT_FAILURE`
+
+### Attributes
+`#suppress`, `#strict`, `#enum`, `#flags`
+
+### Strings
+- Regular strings with interpolation: `"hello ${name}"`
+- Raw strings (no escapes/interpolation): `` `raw\nstring` ``
+
+### Module System
+- Module declarations: `module mymodule`
+- Import statements: `import @std`, `import "../path"`
+- Import & use: `import & use @std`
+- Using statements: `using std`
+- Stdlib module names highlighted as namespace
+
+### Other
+- Comments: `//` and `/* */`
+- Numbers: integers, floats, hex (`0xFF`), binary (`0b101`)
+- Operators: `+`, `-`, `*`, `/`, `%`, `=`, `==`, `!=`, `<`, `>`, `<=`, `>=`, `&&`, `||`, `!`, `&`, `++`, `--`, `+=`, `-=`, `*=`, `/=`, `->`
 - Function definitions and calls
 - Struct and enum declarations
-- Attributes (`@(float)`, `@suppress()`)
-- Import paths (`@std`, `@arrays`, `@maps`)
-- Numbers (integers, floats, hex `0xFF`, binary `0b101`)
 
 ## Structure
 

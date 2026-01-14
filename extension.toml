@@ -1,6 +1,6 @@
 id = "ez"
 name = "EZ"
-version = "0.2.0"
+version = "0.3.0"
 schema_version = 1
 description = "Syntax highlighting and language server for the EZ programming language"
 repository = "https://github.com/SchoolyB/EZ"
