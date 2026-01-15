@@ -26,11 +26,9 @@
 ; Nil
 (nil) @constant.builtin
 
-; Built-in constants
-[
-  "EXIT_SUCCESS"
-  "EXIT_FAILURE"
-] @constant.builtin
+; Built-in constants (matched by identifier text since they're not node types)
+((identifier) @constant.builtin
+  (#match? @constant.builtin "^(EXIT_SUCCESS|EXIT_FAILURE)$"))
 
 ; Keywords
 [
@@ -57,7 +55,6 @@
   "when"
   "is"
   "default"
-  "cast"
   "module"
   "private"
   "ensure"
@@ -67,7 +64,7 @@
 (break_statement) @keyword
 (continue_statement) @keyword
 
-; Types - builtin primitives
+; Types - builtin primitives (defined in grammar)
 [
   "int"
   "i8"
@@ -91,10 +88,11 @@
   "byte"
   "string"
   "map"
-  "File"
-  "Database"
-  "Error"
 ] @type.builtin
+
+; Builtin types that are identifiers (File, Database, Error)
+((identifier) @type.builtin
+  (#match? @type.builtin "^(File|Database|Error)$"))
 
 ; Operators
 [
@@ -139,6 +137,7 @@
 (struct_literal "}" @punctuation.bracket)
 (enum_declaration "}" @punctuation.bracket)
 (struct_declaration "}" @punctuation.bracket)
+(when_statement "}" @punctuation.bracket)
 
 [
   ","
@@ -147,12 +146,8 @@
 ] @punctuation.delimiter
 
 ; Attributes - use preprocessor/tag color (distinct from functions)
-(attribute) @tag
-
-; Specific attribute names
 (attribute
-  name: (identifier) @tag
-  (#match? @tag "^(suppress|strict|enum|flags)$"))
+  (identifier) @tag)
 
 ; Import statements
 (import_statement) @keyword
@@ -162,10 +157,6 @@
 (import_path
   "@" @punctuation.special
   (identifier) @namespace)
-
-; Import paths - string paths for user modules
-(import_path
-  (string) @string)
 
 ; Module declarations (module mymodule)
 (module_declaration
@@ -182,7 +173,7 @@
 ; Built-in function calls
 (call_expression
   function: (identifier) @function.builtin
-  (#match? @function.builtin "^(len|typeof|copy|error|exit|panic|assert|ref|append|input|read_int)$"))
+  (#match? @function.builtin "^(len|typeof|copy|error|exit|panic|assert|ref|append|input|read_int|cast|range)$"))
 
 ; Function calls
 (call_expression

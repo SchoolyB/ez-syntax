@@ -1,18 +1,15 @@
 id = "ez"
 name = "EZ"
-version = "0.3.0"
+version = "0.3.1"
 schema_version = 1
 description = "Syntax highlighting and language server for the EZ programming language"
 repository = "https://github.com/SchoolyB/EZ"
 authors = ["Marshall Burns"]
-
-[lib]
-kind = "Rust"
-version = "0.7.0"
+languages = ["languages/ez"]
 
 [grammars.ez]
 repository = "https://github.com/SchoolyB/tree-sitter-ez"
-rev = "1acd06ddff44aee4a46fbbdc405023f6a7677d03"
+rev = "66cb7e199f8659db2a611a94bf02a9f659ffd6dd"
 
 [language_servers.ez-lsp]
 language = "EZ"
