@@ -85,6 +85,61 @@ ez-syntax/
     └── ez/                  # Tree-sitter grammar (cloned from tree-sitter-ez)
 ```
 
+## Updating the Extension
+
+When adding or changing keywords/syntax in EZ, you need to update **both** repos:
+
+### 1. Update the Grammar (tree-sitter-ez)
+
+```bash
+cd tree-sitter-ez
+
+# Edit grammar.js to add/modify syntax rules
+# Then regenerate the parser:
+npm install -g tree-sitter-cli  # if not installed
+tree-sitter generate
+
+# Commit and push
+git add -A
+git commit -m "feat: add new_keyword"
+git push
+
+# Copy the commit SHA (you'll need it next)
+git rev-parse HEAD
+```
+
+### 2. Update This Extension (ez-syntax)
+
+```bash
+cd ez-syntax
+
+# Update extension.toml with the new commit SHA:
+# [grammars.ez]
+# rev = "NEW_COMMIT_SHA_HERE"
+
+# Update languages/ez/highlights.scm:
+# - Add new keywords to the keyword list
+# - Add new builtin functions to the builtin functions pattern
+# - etc.
+
+# Commit and push
+git add -A
+git commit -m "feat: add new_keyword highlighting"
+git push
+```
+
+### 3. Reload in Zed
+
+Open Command Palette (`Cmd+Shift+P`) and run `zed: reload extensions`
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `extension.toml` | Points to tree-sitter-ez commit SHA |
+| `languages/ez/highlights.scm` | Defines what gets highlighted and how |
+| `languages/ez/config.toml` | File extensions, comments, brackets |
+
 ## Related
 
 - [EZ Programming Language](https://github.com/SchoolyB/EZ)
