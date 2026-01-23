@@ -212,7 +212,7 @@
   (identifier) @variable.member)
 
 ; Type annotations - user defined types
-(type (identifier) @type)
+(type (identifier) @type.builtin)
 
 ; Identifiers (fallback)
 (identifier) @variable
