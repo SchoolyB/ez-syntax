@@ -1,3 +1,6 @@
+; Identifiers (fallback) - MUST BE FIRST so specific patterns override
+(identifier) @variable
+
 ; Comments
 (comment) @comment
 (block_comment) @comment
@@ -8,7 +11,6 @@
 (raw_string) @string
 
 ; String interpolation - capture the delimiters explicitly
-; This must come BEFORE the general punctuation rules
 (interpolation
   "${" @string.special
   "}" @string.special)
@@ -93,6 +95,9 @@
 ; Builtin types that are identifiers (File, Database, Error)
 ((identifier) @type.builtin
   (#match? @type.builtin "^(File|Database|Error)$"))
+
+; Type annotations - user defined types
+(type (identifier) @type.builtin)
 
 ; Operators
 [
@@ -210,9 +215,3 @@
 ; Struct field initialization
 (struct_field
   (identifier) @variable.member)
-
-; Type annotations - user defined types
-(type (identifier) @type.builtin)
-
-; Identifiers (fallback)
-(identifier) @variable
