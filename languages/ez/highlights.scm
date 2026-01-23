@@ -99,6 +99,9 @@
 ; Type annotations - user defined types
 (type (identifier) @type.builtin)
 
+; Type in new() expressions
+(new_expression type: (identifier) @type.builtin)
+
 ; Operators
 [
   "+"
