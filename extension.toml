@@ -9,7 +9,7 @@ languages = ["languages/ez"]
 
 [grammars.ez]
 repository = "https://github.com/SchoolyB/tree-sitter-ez"
-rev = "dc0a6ca48cc7945f5541a9031bd707570f5d5b3b"
+rev = "e99979c5e228137127616b8c8d73bcc9fd93e479"
 
 [language_servers.ez-lsp]
 language = "EZ"
